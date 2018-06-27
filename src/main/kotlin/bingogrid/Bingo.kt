@@ -1,11 +1,11 @@
 package bingogrid
 
-import java.util.*
-
 fun main(args: Array<String>) {
-    val randNum = Random()
-    randNum.setSeed("ROCKETRACCOON".hashCode().toLong())
-    print(
-            GridTasker.fillGrid(GridGenerator.generate(randNum.nextDouble()))
-    )
+    val doubleSeed = SeedTranslator.alphaNumericSeedToRandomDouble("10")
+    val gridGenerator = GridGenerator(doubleSeed)
+    val grid = gridGenerator.generate()
+    val filledGrid = GridTasker.fillGrid(grid)
+    filledGrid.forEach {
+        println(it)
+    }
 }

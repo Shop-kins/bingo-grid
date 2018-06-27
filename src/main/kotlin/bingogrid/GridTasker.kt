@@ -12,11 +12,11 @@ class GridTasker {
                 }
 
         private fun generateHardTask(): String{
-            return "HARD"
+            return "X"
         }
 
         private fun generateEasyTask(): String{
-            return "EASY"
+            return "-"
         }
 
     }
