@@ -44,4 +44,16 @@ class GridGeneratorTest{
         }
     }
 
+    @Test
+    fun `each Diagonal  has at least correct difficulty`(){
+        val gridSize = 7
+        val difficulty = 3
+        val gg1 = GridGenerator(1L, gridSize, difficulty)
+        val grid = gg1.generate()
+        val diagDifficulty = (0 until gridSize).sumBy { grid[it][it] }
+        val diag2Difficulty = (1..gridSize).sumBy { grid[gridSize-it][gridSize-it] }
+        Assert.assertTrue(diagDifficulty >= difficulty, "$diagDifficulty is not greater than or equal to $difficulty")
+        Assert.assertTrue(diag2Difficulty >= difficulty, "$diag2Difficulty is not greater than or equal to $difficulty")
+    }
+
 }
