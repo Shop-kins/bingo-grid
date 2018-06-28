@@ -2,10 +2,18 @@ package bingogrid
 
 import java.util.*
 
-class GridGenerator(val seed: Double) {
+class GridGenerator(
+        seed: Long,
+        private val gridSize: Int = 5,
+        private val difficulty: Int = 2
+) {
+    private val rand = Random(seed)
 
-    private val gridSize: Int = 5
-    private val difficulty: Int = 3
+    init {
+        if(difficulty > gridSize){
+            throw IllegalStateException("Difficulty can not be greater than grid size")
+        }
+    }
 
     fun generate(): List<List<Int>> {
         val gridRows = mutableListOf<List<Int>>()
@@ -16,7 +24,6 @@ class GridGenerator(val seed: Double) {
     }
 
     private fun generateGridRow(gridRows: List<List<Int>>): List<Int> {
-        val rand = Random(seed.toLong())
         val safe = safeColumns(gridRows)
         val nextRow = generateZeroList()
         for (i in 1..difficulty) {
