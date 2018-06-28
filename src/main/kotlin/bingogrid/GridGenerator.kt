@@ -5,7 +5,7 @@ import java.util.*
 class GridGenerator(val seed: Double) {
 
     private val gridSize: Int = 5
-    private val difficulty: Int = 4
+    private val difficulty: Int = 3
 
     fun generate(): List<List<Int>> {
         val gridRows = mutableListOf<List<Int>>()
@@ -20,7 +20,7 @@ class GridGenerator(val seed: Double) {
         val safe = safeColumns(gridRows)
         val nextRow = generateZeroList()
         for (i in 1..difficulty) {
-            val necessary = necessaryColumn(gridRows, safe)
+            val necessary = necessaryColumn(safe, gridRows.size)
             if(necessary != null) {
                 nextRow[necessary] = 1
                 safe.removeAll { it == necessary }
@@ -45,11 +45,9 @@ class GridGenerator(val seed: Double) {
         return safeList
     }
 
-    private fun necessaryColumn(gridRows: List<List<Int>>, safe: List<Int>): Int? {
+    private fun necessaryColumn(safe: List<Int>, currentRowCount: Int): Int? {
         for (i in 0 until gridSize) {
-            if(safe.contains(i)){
-                if (difficulty - gridRows.sumBy { it[i] } == gridSize) return i
-            }
+            if(safe.count { it == i } == (gridSize-currentRowCount)) return i
         }
         return null
     }
