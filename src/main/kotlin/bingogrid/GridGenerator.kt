@@ -18,12 +18,12 @@ class GridGenerator(
         }
     }
 
-    fun generate(): List<List<Int>> {
+    fun generate(count: Int = 0): List<List<Int>> {
         val gridRows = mutableListOf<List<Int>>()
         (1..gridSize).forEach {
             gridRows += generateGridRow(gridRows)
         }
-        return if(isDiagonalFine(gridRows)) gridRows else generate()
+        return if(isDiagonalFine(gridRows) || count == 3) gridRows else generate(count + 1)
     }
 
     private fun generateGridRow(gridRows: List<List<Int>>): List<Int> {
