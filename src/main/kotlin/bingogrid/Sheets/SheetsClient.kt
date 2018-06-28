@@ -16,7 +16,7 @@ class SheetsClient(
             "https://sheets.googleapis.com/v4/spreadsheets/$spreadsheetId/values/"
 
     fun getColumnData(column: String): SheetsData{
-        val fullUrl = sheetsUrl + "$column:$column?key="
+        val fullUrl = sheetsUrl + "${column}2:$column?key="
         val request = Request.Builder().url(fullUrl)
         val result = client.newCall(request.build())
         val resultRespoonse = result.execute().body()

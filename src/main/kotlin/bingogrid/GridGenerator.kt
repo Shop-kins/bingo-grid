@@ -23,14 +23,14 @@ class GridGenerator(
         (1..gridSize).forEach {
             gridRows += generateGridRow(gridRows)
         }
-        return gridRows
+        return if(isDiagonalFine(gridRows)) gridRows else generate()
     }
 
     private fun generateGridRow(gridRows: List<List<Int>>): List<Int> {
         val safe = safeColumns(gridRows)
         val nextRow = generateZeroList()
         for (i in 1..difficulty) {
-            val necessary = necessaryColumn(safe, gridRows.size)
+            val necessary = necessaryColumn(safe, gridRows)
             if(necessary != null) {
                 nextRow[necessary] = 1
                 safe.removeAll { it == necessary }
@@ -55,11 +55,19 @@ class GridGenerator(
         return safeList
     }
 
-    private fun necessaryColumn(safe: List<Int>, currentRowCount: Int): Int? {
+    private fun necessaryColumn(safe: List<Int>, gridRows: List<List<Int>>): Int? {
+        val currentRowCount = gridRows.size
+        if(currentRowCount == 0) return null
         for (i in 0 until gridSize) {
             if(safe.count { it == i } == (gridSize-currentRowCount)) return i
         }
         return null
+    }
+
+    private fun isDiagonalFine(grid: List<List<Int>>): Boolean {
+        val diagDifficulty = (0 until gridSize).sumBy { grid[it][it] }
+        val diag2Difficulty = (1..gridSize).sumBy { grid[gridSize-it][gridSize-it] }
+        return !(diagDifficulty < difficulty || diag2Difficulty < difficulty)
     }
 
 
