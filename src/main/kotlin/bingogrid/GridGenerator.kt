@@ -13,6 +13,9 @@ class GridGenerator(
         if(difficulty > gridSize){
             throw IllegalStateException("Difficulty can not be greater than grid size")
         }
+        if(gridSize > 20){
+            throw IllegalStateException("Grid size too unwieldy")
+        }
     }
 
     fun generate(): List<List<Int>> {

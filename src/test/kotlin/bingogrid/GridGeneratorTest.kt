@@ -11,11 +11,23 @@ class GridGeneratorTest{
         GridGenerator(1L, 5, 7)
     }
 
+    @Test(expectedExceptions = arrayOf(IllegalStateException::class))
+    fun `grid size cannot be greater than 20`(){
+        GridGenerator(1L, 21, 7)
+    }
+
     @Test
     fun `new instance wth same input set always produces same result`(){
         val gg1 = GridGenerator(1L, 5, 2)
         val gg2 = GridGenerator(1L, 5, 2)
         Assert.assertEquals(gg1.generate(), gg2.generate())
+    }
+
+    @Test
+    fun `new instance wth different input set always produces different result`(){
+        val gg1 = GridGenerator(1L, 5, 2)
+        val gg2 = GridGenerator(2L, 5, 2)
+        Assert.assertNotEquals(gg1.generate(), gg2.generate())
     }
 
     @Test
