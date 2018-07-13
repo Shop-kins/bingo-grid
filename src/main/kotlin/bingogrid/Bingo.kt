@@ -30,7 +30,7 @@ class Main {
             val response = ReturnData(
                     false,
                     200,
-                    mapOf("Access-Control-Allow-Origin" to "*"),
+                    mapOf("Access-Control-Allow-Origin" to "http://awesome-kirch-d8bb59.bitballoon.com/"),
                     mapper.writeValueAsString(filledGrid)
             )
             mapper.writeValue(output, response)
@@ -38,7 +38,7 @@ class Main {
             val response = ReturnData(
                     false,
                     500,
-                    mapOf("Access-Control-Allow-Origin" to "*"),
+                    mapOf("Access-Control-Allow-Origin" to "http://awesome-kirch-d8bb59.bitballoon.com/"),
                     e.message ?: "Unknown Error"
             )
             mapper.writeValue(output, response)
