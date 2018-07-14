@@ -51,7 +51,7 @@ class GridGeneratorTest{
         val gg1 = GridGenerator(1L, gridSize, difficulty)
         val grid = gg1.generate()
         val diagDifficulty = (0 until gridSize).sumBy { grid[it][it] }
-        val diag2Difficulty = (1..gridSize).sumBy { grid[gridSize-it][gridSize-it] }
+        val diag2Difficulty = (1..gridSize).sumBy { grid[it-1][gridSize-it] }
         Assert.assertTrue(diagDifficulty >= difficulty, "$diagDifficulty is not greater than or equal to $difficulty")
         Assert.assertTrue(diag2Difficulty >= difficulty, "$diag2Difficulty is not greater than or equal to $difficulty")
     }
