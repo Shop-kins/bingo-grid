@@ -66,7 +66,7 @@ class GridGenerator(
 
     private fun isDiagonalFine(grid: List<List<Int>>): Boolean {
         val diagDifficulty = (0 until gridSize).sumBy { grid[it][it] }
-        val diag2Difficulty = (1..gridSize).sumBy { grid[gridSize-it][gridSize-it] }
+        val diag2Difficulty = (1..gridSize).sumBy { grid[it-1][gridSize-it] }
         return !(diagDifficulty < difficulty || diag2Difficulty < difficulty)
     }
 
