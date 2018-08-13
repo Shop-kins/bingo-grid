@@ -11,7 +11,7 @@ import java.io.OutputStream
 import java.util.*
 
 
-class Main {
+class Mains {
 
     private val mapper = jacksonObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
     private val defaultSheetId: String = ""
@@ -23,8 +23,8 @@ class Main {
             val spreadsheetId = inputData.queryStringParameters?.sheetId ?: defaultSheetId
             val client = SheetsClient(spreadsheetId)
             val longSeed = SeedTranslator.alphaNumericSeedToRandomLong(seed)
-            val tasker = GridTasker(longSeed, client)
-            val gridGenerator = GridGenerator(longSeed)
+            val tasker = GridTaskerLatinSquare(longSeed, client)
+            val gridGenerator = GridGeneratorLatinSquare(longSeed)
             val grid = gridGenerator.generate()
             val filledGrid = tasker.fillGrid(grid)
             val response = ReturnData(
