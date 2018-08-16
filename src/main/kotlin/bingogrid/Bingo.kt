@@ -11,7 +11,7 @@ import java.io.OutputStream
 import java.util.*
 
 
-class Mains {
+class Main {
 
     private val mapper = jacksonObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
     private val defaultSheetId: String = ""
