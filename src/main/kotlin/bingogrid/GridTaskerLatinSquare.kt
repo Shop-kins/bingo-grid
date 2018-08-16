@@ -7,7 +7,7 @@ import java.util.*
 class GridTaskerLatinSquare(
         seed: Long,
         sheetsClient: SheetsClient
-) {
+) : GridTaskerInterface {
 
     private val rand = Random(seed)
     private val oneTasks = sheetsClient.getColumnData("A", 3)
@@ -16,8 +16,8 @@ class GridTaskerLatinSquare(
     private val fourTasks = sheetsClient.getColumnData("D", 3)
     private val fiveTasks = sheetsClient.getColumnData("E", 3)
 
-    fun fillGrid(grid: List<List<Int>>): List<List<String>> {
-        canTaskGrid(grid)
+    override fun fillGrid(grid: List<List<Int>>): List<List<String>> {
+        canTaskGrid()
         return grid.map {
             it.map {
                 when(it){
@@ -38,12 +38,10 @@ class GridTaskerLatinSquare(
         return task
     }
 
-    private fun canTaskGrid(grid: List<List<Int>>){
+    private fun canTaskGrid(){
         if(oneTasks.values.size < 5 || twoTasks.values.size < 5 || threeTasks.values.size < 5 || fourTasks.values.size < 5 || fiveTasks.values.size < 5){
             throw IllegalStateException("Not Enough tasks to build grid, need five of each number")
         }
     }
-
-
 
 }

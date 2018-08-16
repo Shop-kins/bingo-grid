@@ -23,8 +23,12 @@ class Mains {
             val spreadsheetId = inputData.queryStringParameters?.sheetId ?: defaultSheetId
             val client = SheetsClient(spreadsheetId)
             val longSeed = SeedTranslator.alphaNumericSeedToRandomLong(seed)
-            val tasker = GridTaskerLatinSquare(longSeed, client)
-            val gridGenerator = GridGeneratorLatinSquare(longSeed)
+
+
+            val tasker = if(inputData.queryStringParameters?.mode == "latin") GridTaskerLatinSquare(longSeed, client) else GridTasker(longSeed, client)
+            val gridGenerator = if(inputData.queryStringParameters?.mode == "latin") GridGeneratorLatinSquare(longSeed) else GridGenerator(longSeed)
+
+
             val grid = gridGenerator.generate()
             val filledGrid = tasker.fillGrid(grid)
             val response = ReturnData(

@@ -4,12 +4,12 @@ import java.util.*
 
 class GridGeneratorLatinSquare(
         seed: Long
-) {
+) : GridGenerateInterface {
     private val gridSize = 5
     private val rand = Random(seed)
     private val grid : List<Int> = (0 until gridSize).map { tens -> (1..gridSize).map { (tens * 10) + it } }.flatten().toMutableList()
 
-    fun generate(): List<List<Int>>{
+    override fun generate(count: Int): List<List<Int>>{
         val piecePlacements = placePieces()
         val resultGrid: List<MutableList<Int>> = piecePlacements.map { it.toMutableList() }
         var piece = 0

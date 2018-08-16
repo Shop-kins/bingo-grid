@@ -7,13 +7,13 @@ import java.util.*
 class GridTasker(
         seed: Long,
         sheetsClient: SheetsClient
-) {
+) : GridTaskerInterface {
 
     private val rand = Random(seed)
     private val easyTasks = sheetsClient.getColumnData("A")
     private val hardTasks = sheetsClient.getColumnData("B")
 
-    fun fillGrid(grid: List<List<Int>>): List<List<String>> {
+    override fun fillGrid(grid: List<List<Int>>): List<List<String>> {
         canTaskGrid(grid)
         return grid.map {
             it.map {

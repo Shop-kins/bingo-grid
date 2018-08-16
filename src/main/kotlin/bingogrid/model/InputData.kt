@@ -7,5 +7,6 @@ data class InputData(
 
 data class QueryString(
         val seed: String?,
-        val sheetId: String?
+        val sheetId: String?,
+        val mode: String?
 )

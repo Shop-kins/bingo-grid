@@ -6,7 +6,7 @@ class GridGenerator(
         seed: Long,
         private val gridSize: Int = 5,
         private val difficulty: Int = 2
-) {
+) : GridGenerateInterface {
     private val rand = Random(seed)
 
     init {
@@ -18,7 +18,7 @@ class GridGenerator(
         }
     }
 
-    fun generate(count: Int = 0): List<List<Int>> {
+    override fun generate(count: Int): List<List<Int>> {
         val gridRows = mutableListOf<List<Int>>()
         (1..gridSize).forEach {
             gridRows += generateGridRow(gridRows)
