@@ -23,7 +23,7 @@ class GridGenerator(
         (1..gridSize).forEach {
             gridRows += generateGridRow(gridRows)
         }
-        return if(isDiagonalFine(gridRows) || count == 3) gridRows else generate(count + 1)
+        return if(isDiagonalFine(gridRows) || count == 5) gridRows else generate(count + 1)
     }
 
     private fun generateGridRow(gridRows: List<List<Int>>): List<Int> {
