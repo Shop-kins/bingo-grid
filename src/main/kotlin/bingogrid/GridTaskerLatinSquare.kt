@@ -11,10 +11,10 @@ class GridTaskerLatinSquare(
 
     private val rand = Random(seed)
     private val oneTasks = sheetsClient.getColumnData("A", 3)
-    private val twoTasks = sheetsClient.getColumnData("B", 3)
-    private val threeTasks = sheetsClient.getColumnData("C", 3)
-    private val fourTasks = sheetsClient.getColumnData("D", 3)
-    private val fiveTasks = sheetsClient.getColumnData("E", 3)
+    private val twoTasks = sheetsClient.getColumnData("C", 3)
+    private val threeTasks = sheetsClient.getColumnData("E", 3)
+    private val fourTasks = sheetsClient.getColumnData("G", 3)
+    private val fiveTasks = sheetsClient.getColumnData("I", 3)
 
     override fun fillGrid(grid: List<List<Int>>): List<List<String>> {
         canTaskGrid()
