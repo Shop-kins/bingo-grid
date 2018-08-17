@@ -34,7 +34,7 @@ class Main {
             val response = ReturnData(
                     false,
                     200,
-                    mapOf("Access-Control-Allow-Origin" to "http://awesome-kirch-d8bb59.netlify.com, https://awesome-kirch-d8bb59.netlify.com"),
+                    mapOf("Access-Control-Allow-Origin" to "http://awesome-kirch-d8bb59.netlify.com"),
                     mapper.writeValueAsString(filledGrid)
             )
             mapper.writeValue(output, response)
@@ -42,7 +42,7 @@ class Main {
             val response = ReturnData(
                     false,
                     500,
-                    mapOf("Access-Control-Allow-Origin" to "http://awesome-kirch-d8bb59.netlify.com, https://awesome-kirch-d8bb59.netlify.com"),
+                    mapOf("Access-Control-Allow-Origin" to "http://awesome-kirch-d8bb59.netlify.com"),
                     e.message ?: "Unknown Error"
             )
             mapper.writeValue(output, response)
